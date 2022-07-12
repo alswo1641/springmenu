@@ -2,7 +2,9 @@ package com.example.hello;
 
 import com.example.hello.dto.TbMenu;
 import com.example.hello.service.MenuService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HelloController {
-
+    @Autowired
+    private MenuService menuService;
 
     @GetMapping("/")
     public String index(){
@@ -28,6 +31,13 @@ public class HelloController {
         System.out.println(tbMenu.getPrice());
         System.out.println(tbMenu.getImg());
         return tbMenu;
+    }
+
+    @GetMapping("/see")
+    public String see(Model model) {
+        model.addAttribute("list", menuService.findAll());
+
+        return "see";
     }
 
 

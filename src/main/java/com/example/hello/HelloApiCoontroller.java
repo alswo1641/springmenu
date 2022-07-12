@@ -3,12 +3,14 @@ package com.example.hello;
 import com.example.hello.service.MenuService;
 import com.example.hello.vo.MenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class HelloApiCoontroller {
@@ -28,5 +30,12 @@ public class HelloApiCoontroller {
     @PostMapping("/insert")
     public ResponseEntity<MenuVo> save(MenuVo menu) {
         return new ResponseEntity<MenuVo>(menuService.save(menu), HttpStatus.OK);
+    }
+
+    // 모든 회원 조회
+    @GetMapping("/menulist")
+    public ResponseEntity<List<MenuVo>> getAllmembers() {
+        List<MenuVo> menu = menuService.findAll();
+        return new ResponseEntity<List<MenuVo>>(menu, HttpStatus.OK);
     }
 }
