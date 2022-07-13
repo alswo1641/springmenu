@@ -51,5 +51,9 @@ public class HelloApiCoontroller {
         return new ResponseEntity<List<MenuVo>>(menu, HttpStatus.OK);
     }
 
-
+    @GetMapping("/api/v1/bestmenu")
+    public ResponseEntity<List<MenuVo>> getBestmenu() {
+        List<MenuVo> menu = menuService.findRandMenu();
+        return new ResponseEntity<List<MenuVo>>(menu, HttpStatus.OK);
+    }
 }

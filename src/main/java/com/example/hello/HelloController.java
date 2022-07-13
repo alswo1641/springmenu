@@ -36,8 +36,11 @@ public class HelloController {
     @GetMapping("/see")
     public String see(Model model) {
         model.addAttribute("list", menuService.findAll());
-
         return "see";
+    }
+    @GetMapping("/best")
+    public String best() {
+        return "best";
     }
 
 

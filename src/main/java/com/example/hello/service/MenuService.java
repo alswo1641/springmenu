@@ -25,5 +25,7 @@ public class MenuService {
         return menuRepository.save(menu).getId();
      //   return menu;
     }
-
+ public List<MenuVo> findRandMenu(){
+        return menuRepository.findRandMenu();
+ }
 }
